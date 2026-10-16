@@ -4,6 +4,7 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, Query, Response, status
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
@@ -23,7 +24,13 @@ app = FastAPI(
     version="0.1.0",
     lifespan=lifespan,
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class EmployeeCreate(BaseModel):
     employee_id: str = Field(min_length=1, max_length=30)
