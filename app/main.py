@@ -16,6 +16,8 @@ from app.models import Employee
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
+    from scripts.seed_employees import seed_employees
+    seed_employees()
     yield
 
 
