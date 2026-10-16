@@ -152,17 +152,18 @@ function App() {
           <p className="subtitle">Manage employee records and salary information.</p>
         </div>
         <button className="primary" onClick={() => {
-          setEditing(null);
-          setForm({
-            employee_id: "",
-            name: "",
-            country: "India",
-            department: "Engineering",
-            salary: "",
-            currency: "INR",
-          });
-        }}>
-          + Add employee
+  setEditing(null);
+  setForm({
+    employee_id: "",
+    name: "",
+    country: "India",
+    department: "Engineering",
+    salary: "",
+    currency: "INR",
+  });
+  document.getElementById("employee-form")?.scrollIntoView({ behavior: "smooth" });
+}}>         
+ + Add employee
         </button>
       </section>
 
@@ -256,7 +257,7 @@ function App() {
 
       {(editing !== null || form.employee_id !== "") && null}
 
-      <section className="form-panel">
+        <section id="employee-form" className="form-panel">
         <h2>{editing ? `Edit ${editing}` : "Add a new employee"}</h2>
         <p>Complete the fields below to save an employee record.</p>
         <form onSubmit={saveEmployee}>
